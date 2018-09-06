@@ -1,0 +1,13 @@
+/**
+Design component for AppComponent
+*/
+
+table{
+    tbody{
+        td{
+            &.strikeOut{
+                text-decoration: line-through;
+            }
+        }
+    }
+}
