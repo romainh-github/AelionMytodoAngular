@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { TodoInterface } from './shared/interfaces/todo-interface';
-//@ annotation est appele un decorateur
-//decorateur est un design pattern
+// @annotation est appele un decorateur
+// decorateur est un design pattern
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 
-//export permet de mettre la classe accessible en public
+// export permet de mettre la classe accessible en public
 export class AppComponent {
-  public title: String = 'Bonjour Angular';
-  public btnTitle : String = 'EN';
+  public title: String = 'Todo Liste';
+  public btnTitle: String = 'EN';
 
 
   /**
@@ -38,10 +38,10 @@ export class AppComponent {
  * ajoute un todo dans le tableau
  * @return void
  */
-  public addTodo():void{
+  /*public addTodo():void{
     this.todos.push({title: this.aTodo, isChecked: false});
     this.aTodo='';
-  }
+  }*/
 /**
  * supprime un todo du tableau
  * @return void
@@ -148,11 +148,11 @@ export class AppComponent {
 
   public changeTitle(): void {
     if(this.btnTitle === 'EN'){
-      this.title = 'Welcome to the Angular';
+      this.title = 'Welcome to the Angular Todo List';
       this.btnTitle = 'FR'
     }
     else{
-      this.title = 'Bonjour Angular';
+      this.title = 'Bonjour Angular Todo Liste';
       this.btnTitle = 'EN'
     }
   }

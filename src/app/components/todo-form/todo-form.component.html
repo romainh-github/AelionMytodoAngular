@@ -1,0 +1,36 @@
+<div class="container" >
+    <form [formGroup]="todoForm" (submit)=saveTodo()>
+      <div class="row">
+        <!-- Col 1 with inputs -->
+        <div class="col-8">
+          <!-- Input for todo title -->
+          <div class="form-group">
+            <input type="text" formControlName="title" class="form-control" placeholder="A faire...">
+            <div class="alert alert-warning" *ngIf="title.invalid && title.touched">
+              Le titre du todo doit contenir au moins 5 caractères.
+            </div>
+          </div>
+          <!-- Input for todo dateStart -->
+          <div class="form-group">
+            <input type="date" formControlName="start" class="form-control" name="todoStart" id="todoStart" placeholder="Du...">
+          </div>
+          <!-- Input for todo endStart -->
+          <div class="form-group">
+            <input type="date" formControlName="end" class="form-control" name="todoEnd" id="todoEnd" placeholder="A...">
+          </div>
+          <!--Alert if endDate is not bigger than startDate-->
+          <div class="alert alert-warning" *ngIf="todoForm.hasError('start')">
+            La date de fin doit être supérieure à la date de début.
+          </div>
+        </div>
+
+        <!-- Col 2 with valid/add todo button -->
+        <div class="col-3 btn-height">
+          <div class="form-group ">
+            <button type="submit" [disabled]="todoForm.invalid" class="btn btn-primary form-control btn-add"><i class="fa fa-calendar-plus-o fa-3x"></i></button>
+          </div>
+        </div>
+      </div>
+
+  </form>
+</div>
