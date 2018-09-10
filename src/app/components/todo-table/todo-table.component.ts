@@ -87,9 +87,7 @@ export class TodoTableComponent implements OnInit {
       } else {
         this.todoService.deleteTodo(todo);
       }
-      if (this.todos.length === 0) {
         this.checkedStatus = false;
-      }
     }
     this.todos = _todos;
     }
