@@ -16,37 +16,6 @@
 <!--<div [hidden]="true">
   <input type="text" placeholder="add a todo..." [(ngModel)]="aTodo" >
   <button type="button" (click)="addTodo()" [disabled]="hasMoreChara()">Ajout d'une todo....</button>
-<div [hidden]="todos.length == 0">
-    <button type="button" (click)="deleteAll()" [disabled]="notChecked()" >
-        Suppression
-    </button>
-</div>
-  <table [hidden]="todos.length == 0">
-    <thead>
-      <th>
-          <input type="checkbox" (click)="toggleAll()" [checked]=checkedStatus>
-      </th>
-      <th>Titre</th>
-      <th>&nbsp;</th>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let todo of todos; let i = index;">
-        <td>
-          <input type="checkbox" (click)="toggle(i)" [checked]="todo.isChecked">
-        </td>
-        <td [ngClass]="{strikeOut: isChecked(todo)}">
-          {{ todo.title}}
-        </td>
-        <td>
-          <button type="button" (click)="delete(i)">
-            x
-          </button>
-        </td>
-      </tr>
-    </tbody>
-
-  </table>
 </div>-->
 
 

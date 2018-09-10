@@ -1,4 +1,10 @@
 export interface TodoInterface {
+
+    /**
+     * @var (optional) id: number
+     * Id of the todo
+     */
+    id?: number; // optional thanks to the question mark ?
     /**
      * Titre du todo
      * @var String
@@ -7,7 +13,7 @@ export interface TodoInterface {
     /**
      * @var boolean vrai si checkbox est checked
      */
-    isChecked: boolean;
+    isChecked?: boolean;
     /**
      * @var start Starting date of Todo
      */
