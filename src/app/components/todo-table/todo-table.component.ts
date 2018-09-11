@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoInterface } from './../../shared/interfaces/todo-interface';
 import { TodoService } from './../../shared/services/todo.service';
 import { Subscription } from 'rxjs';
+import { FormControl } from '@angular/forms';
+
+// import material library
+import {MatTableDataSource, MatSort, MatSelect, MatOption, MatFormField} from '@angular/material';
 
 
 @Component({
@@ -10,6 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./todo-table.component.scss']
 })
 export class TodoTableComponent implements OnInit {
+  @ViewChild(MatSort) sort: MatSort;
 
 
   /**
@@ -19,6 +24,18 @@ export class TodoTableComponent implements OnInit {
 
   public todos: TodoInterface[];
   public checkedStatus: boolean = false;
+  /**
+   * Source de data pour material table
+   */
+  public dataSource = new MatTableDataSource<TodoInterface>();
+/**
+ * columns variable that is a new variable
+ */
+  public columns = new FormControl();
+/**
+ * Reference the name of the column in the html mat-table
+ */
+  public displayedColumns = ['title', 'start', 'end', 'edit', 'delete'];
 
   public constructor(private todoService: TodoService) {
     this.todos = [];
@@ -38,6 +55,7 @@ export class TodoTableComponent implements OnInit {
         this.todos[index] = todo;
       }
       this.todoService.sendTodoList(this.todos);
+      this.dataSource.data = this.todos;
     });
    }
 
@@ -47,16 +65,21 @@ export class TodoTableComponent implements OnInit {
       this.todos = todos;
       console.log('Il y a ' + this.todos.length + ' todos.');
       this.todoService.sendTodoList(this.todos);
+      // define what the datasource will be
+      this.dataSource.data = this.todos;
+      this.dataSource.sort = this.sort;
     });
 
   }
 
-  public delete(index: number): void {
+  public delete(todo: TodoInterface): void {
+    const index = this.todos.indexOf(todo);
     const _todo = this.todos[index];
     console.log('Suppression de la ligne : ' + index);
     this.todos.splice(index, 1);
     this.todoService.deleteTodo(_todo);
     this.todoService.sendTodoList(this.todos);
+    this.dataSource.data = this.todos;
     if (this.todos.length === 0) {
       this.checkedStatus = false;
     }
