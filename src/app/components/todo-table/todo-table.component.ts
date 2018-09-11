@@ -16,6 +16,7 @@ export class TodoTableComponent implements OnInit {
    * Subscribing to a todo coming from TodoService
    */
   private todoSubscription: Subscription;
+
   public todos: TodoInterface[];
   public checkedStatus: boolean = false;
 
@@ -27,7 +28,6 @@ export class TodoTableComponent implements OnInit {
       // if is not already in the list
       // if it exists i must replace the old value and not create a new line
       const index = this.todos.findIndex((obj) => obj.id === todo.id);
-      console.log('');
       // could be coded as :
       // const index: number = -1;
       // const ticker: number = 0;
@@ -37,6 +37,7 @@ export class TodoTableComponent implements OnInit {
       } else {
         this.todos[index] = todo;
       }
+      this.todoService.sendTodoList(this.todos);
     });
    }
 
@@ -45,6 +46,7 @@ export class TodoTableComponent implements OnInit {
     this.todoService.getTodos().subscribe((todos) => {
       this.todos = todos;
       console.log('Il y a ' + this.todos.length + ' todos.');
+      this.todoService.sendTodoList(this.todos);
     });
 
   }
@@ -54,6 +56,7 @@ export class TodoTableComponent implements OnInit {
     console.log('Suppression de la ligne : ' + index);
     this.todos.splice(index, 1);
     this.todoService.deleteTodo(_todo);
+    this.todoService.sendTodoList(this.todos);
     if (this.todos.length === 0) {
       this.checkedStatus = false;
     }
@@ -90,6 +93,7 @@ export class TodoTableComponent implements OnInit {
         this.checkedStatus = false;
     }
     this.todos = _todos;
+    this.todoService.sendTodoList(this.todos);
     }
     public toggleAll(): void {
 

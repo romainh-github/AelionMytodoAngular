@@ -1,19 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<app-layout>
+  <!-- Integrate form to add todos -->
+  <todo-form></todo-form>
+  <!-- Integrate table to display and edit todos -->
+  <todo-table></todo-table>
+</app-layout>
+
+
+
+<!--     ~~~~~~~~~~~~~~~~~~~~   OLD CODE TO KEEP AS AN EXAMPLE  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!--<div style="text-align:center">
   <h1>
     {{ title }}
   </h1>
- <!--<button [hidden]="true" type="button" (click)="changeTitle()">{{btnTitle}}</button>
- -->
+ <button [hidden]="true" type="button" (click)="changeTitle()">{{btnTitle}}</button>
+ 
 </div>
-<!--Integration of todo form component-->
+Integration of todo form component
 <div>
   <todo-form></todo-form>
 </div>
 <div>
   <todo-table></todo-table>
 </div>
-<!--<div [hidden]="true">
+<div [hidden]="true">
   <input type="text" placeholder="add a todo..." [(ngModel)]="aTodo" >
   <button type="button" (click)="addTodo()" [disabled]="hasMoreChara()">Ajout d'une todo....</button>
 </div>-->

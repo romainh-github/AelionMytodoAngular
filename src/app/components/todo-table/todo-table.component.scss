@@ -1,14 +1,18 @@
 thead{
-    background-color: rgb(5, 94, 211);
+    background-color:#007bff;
     font-family: 'Cambria', 'Cochin', 'Georgia', Times, 'Times New Roman', serif;
     color: #ffffff;
     font-size: 1.2em;
 }
-
+.containerTable{
+    width: 90%;
+    
+}
 table{
     margin-left: 16px;
     table-layout: fixed;
-    width: 100%;
+    
+    
     tr{
         td{
             word-wrap: break-word;   

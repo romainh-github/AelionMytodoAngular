@@ -1,17 +1,17 @@
-<div class="container" [hidden]="todos.length == 0">
+<div class="container-fluid containerTable" [hidden]="todos.length == 0">
   <div>
     <button type="button" (click)="deleteAll()" [disabled]="notChecked()" class ="btn btn-danger btnDelAll">
         <i class="fa fa-trash fa-lg"></i>
     </button>
   </div>
-  <table class="table table-striped container-fluid">
+  <table class="table table-striped">
     <thead class="row">
       <th class="col-1">
           <input type="checkbox" (click)="toggleAll()" [checked]=checkedStatus>
       </th>
       <th class="col-5">To do</th>
-      <th class="col-2"><i class="fa fa-clock-o"></i>  Début</th>
-      <th class="col-2"><i class="fa fa-clock-o"></i>  Fin</th>
+      <th class="col-2">Début <i class="fa fa-sort-down"></i></th>
+      <th class="col-2">Fin <i class="fa fa-sort-down"></i></th>
       <th class="col-2">&nbsp;</th>
     </thead>
 

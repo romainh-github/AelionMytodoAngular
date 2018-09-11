@@ -18,6 +18,11 @@ export class TodoService {
   private todoSubject: Subject<TodoInterface> = new Subject<TodoInterface>();
 
   /**
+   * Define observable for an array of TodoInterface
+   */
+  private todosSubject: Subject<TodoInterface[]> = new Subject<TodoInterface[]>();
+
+  /**
    * Inject dependency HttpClient
    * @param _api HttpClient transport to backend
    */
@@ -77,6 +82,8 @@ export class TodoService {
   public sendTodo(todo: TodoInterface) {
     this.todoSubject.next(todo);
   }
+
+
   /**
    * Method to edit the todo in the db and broadcast change
    * @param todo : edited todo
@@ -95,6 +102,21 @@ export class TodoService {
       this.sendTodo(todo);
       this.sendTodo(_emptyTodo);
     });
+  }
+
+
+    /**
+   * Method allowing classes to subscribe to the subject array of TodoInterface
+   */
+  public getTodoList(): Observable <TodoInterface[]> {
+    return this.todosSubject.asObservable();
+  }
+  /**
+   * Method to broadcast changes on the list
+   * @param todos a TodoInterface[]
+   */
+  public sendTodoList(todos: TodoInterface[]): void {
+    this.todosSubject.next(todos);
   }
 
 
