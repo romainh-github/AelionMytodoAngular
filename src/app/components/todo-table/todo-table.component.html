@@ -4,15 +4,15 @@
         <i class="fa fa-trash fa-lg"></i>
     </button>
   </div>
-  <table class="table table-striped">
+  <table class="table table-striped container-fluid">
     <thead class="row">
       <th class="col-1">
           <input type="checkbox" (click)="toggleAll()" [checked]=checkedStatus>
       </th>
-      <th class="col-6">Titre</th>
-      <th class="col-2"><i class="fa fa-clock-o"></i>  Date Début</th>
-      <th class="col-2"><i class="fa fa-clock-o"></i>  Date Fin</th>
-      <th class="col-1">&nbsp;</th>
+      <th class="col-5">To do</th>
+      <th class="col-2"><i class="fa fa-clock-o"></i>  Début</th>
+      <th class="col-2"><i class="fa fa-clock-o"></i>  Fin</th>
+      <th class="col-2">&nbsp;</th>
     </thead>
 
     <tbody>
@@ -20,7 +20,7 @@
         <td class="col-1">
           <input type="checkbox" (click)="toggle(i)" [checked]="todo.isChecked">
         </td>
-        <td class="col-6" [ngClass]="{strikeOut: isChecked(todo)}">
+        <td class="col-5" [ngClass]="{strikeOut: isChecked(todo)}">
           {{ todo.title}}
         </td>
         <td class="col-2" [ngClass]="{strikeOut: isChecked(todo)}">
@@ -29,11 +29,11 @@
         <td class="col-2" [ngClass]="{strikeOut: isChecked(todo)}">
           {{ todo.end | date:'dd-MM-yyyy'}}
         </td>
-        <td class="col-1 row">
-          <button type="button" class="btn btn-danger col-5 btnDel" (click)="delete(i)">
+        <td class="col-2 row">
+          <button type="button" class="btn btn-danger col-5 btnTodoDel" (click)="delete(i)">
             <i class="fa fa-minus-circle"></i>
           </button>
-          <button type="button" class="btn btn-primary col-5" (click)="edit(todo)">
+          <button type="button" class="btn btn-primary col-5 btnTodoEdit" (click)="edit(todo)">
               <i class="fa fa-pencil"></i>
           </button>
         </td>

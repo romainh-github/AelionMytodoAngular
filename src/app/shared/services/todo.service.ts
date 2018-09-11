@@ -45,7 +45,13 @@ export class TodoService {
       todo)
         .subscribe((addedTodo) => {
           addedTodo[0].isChecked = false;
+          const _emptyTodo = {
+            title: '',
+            start: new Date(),
+            end: new Date()
+          };
           this.sendTodo(addedTodo[0]);
+          this.sendTodo(_emptyTodo);
       });
   }
 

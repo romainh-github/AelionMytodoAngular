@@ -32,7 +32,7 @@ export class TodoTableComponent implements OnInit {
       // const index: number = -1;
       // const ticker: number = 0;
       // for (const _todo of this.todos){ if(_todo.id === todo.id){index = ticker} ticker ++;}
-      if ( !todo.hasOwnProperty('id') ) {
+      if ( index === -1 && todo.hasOwnProperty('id')) {
         this.todos.push(todo);
       } else {
         this.todos[index] = todo;

@@ -7,6 +7,14 @@ thead{
 
 table{
     margin-left: 16px;
+    table-layout: fixed;
+    width: 100%;
+    tr{
+        td{
+            word-wrap: break-word;   
+            overflow-wrap: break-word;
+        }
+    }
 }
 
 .strikeOut{
@@ -16,12 +24,18 @@ table{
 .btnDelAll{
     margin-bottom: 5px;
 }
-.btnDel{
-    margin-right: 1px;
+.btnTodoDel{
+    left: 25%;
+    top:5px;
+    position: absolute;
+    width:50px;
+    margin-right:2px;
+    
 }
-.fa-minus-circle{
-    margin-left: -4px;
-}
-.fa-pencil{
-    margin-left: -4px;
+.btnTodoEdit{
+    top:5px;
+    left: 70%;
+    position: absolute;
+    width:50px;
+    
 }
