@@ -3,6 +3,8 @@ import { TodoInterface } from './../../shared/interfaces/todo-interface';
 import { TodoService } from './../../shared/services/todo.service';
 import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { MatColumns } from './../../shared/interfaces/mat-columns';
+import { TodoHelper } from './../../shared/helpers/todo-helper';
 
 // import material library
 import {MatTableDataSource, MatSort, MatSelect, MatOption, MatFormField} from '@angular/material';
@@ -35,19 +37,25 @@ export class TodoTableComponent implements OnInit {
 /**
  * Reference the name of the column in the html mat-table
  */
-  public displayedColumns = ['title', 'start', 'end', 'edit', 'delete'];
+  // public displayedColumns = ['title', 'start', 'end', 'edit', 'delete'];
   /**
    * List of the available objects in the mat-select
    */
-  public displayedFilter: any[] = [{value: 'start', label: 'Début'}, {value: 'end', label: 'Fin'}];
+  // public displayedFilter: any[] = [{value: 'start', label: 'Début'}, {value: 'end', label: 'Fin'}];
   /**
    * assign displayedFilter to selectedItems which is used in the NgModel in the html
    */
-  public selectedItems = this.displayedFilter;
+  public selectedView: String[];
+/**
+ * Instance de la classe TodoHelper
+ */
+  public helper: TodoHelper;
 
   public constructor(private todoService: TodoService) {
     this.todos = [];
-
+    // instancie le helper
+    this.helper = new TodoHelper();  // avec le new on rentre dans le constructeur de TodoHelper
+    this.selectedView = this.helper.optionalColumnsToArray();
 
     this.todoSubscription = this.todoService.getTodo().subscribe((todo) => {
       console.log('Reception of observable of todo in todo-table: ' + JSON.stringify(todo));
@@ -86,7 +94,7 @@ export class TodoTableComponent implements OnInit {
    * @param event Selected option in the mat-select to filter the todo table
    */
   public filter(event) {
-    console.log(JSON.stringify(event.value));
+    /*console.log(JSON.stringify(event.value));
     const filt = JSON.stringify(event.value);
     console.log(filt);
     if (filt === '[]') {
@@ -97,7 +105,9 @@ export class TodoTableComponent implements OnInit {
       this.displayedColumns = ['title', 'end' , 'edit', 'delete'];
     } else if (filt.includes('end') === false && filt.includes('start') === true)  {
       this.displayedColumns = ['title', 'start' , 'edit', 'delete'];
-    }
+    }*/
+    this.helper.setDiplayedColumns(this.selectedView);
+
   }
 
   /*Methode par Jean Luc : 
@@ -132,14 +142,6 @@ export class TodoTableComponent implements OnInit {
     
     this.displayedColumns = toDisplay;
 }*/
-
-  /**
-   * method to return the label of the filter mat-select in the th of the table
-   * @param index index of the th label in the table
-   */
-  public getLabel(index: number): String {
-    return this.displayedFilter[index].label;
-  }
 
 
   public delete(todo: TodoInterface): void {

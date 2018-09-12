@@ -1,14 +1,14 @@
 <div class="container-fluid containerTable" [hidden]="todos.length == 0">
-  <div>
-    <mat-toolbar color="accent">
-        <span>Outils</span>
-        <span class="move-right"></span>
+  <div >
+    <mat-toolbar color="accent" class="row">
+        <span class="toolTitle">Outils</span>
+        <!--<span class="move-right"></span>-->
 
         <span>
             <mat-form-field>
-                <mat-select placeholder="Afficher" (selectionChange)="filter($event)" [(ngModel)]="selectedItems" [formControl]="columns" multiple>
-                  <mat-option *ngFor="let column of displayedFilter" [value]="column">
-                    {{column.label}}
+                <mat-select placeholder="Afficher" (selectionChange)="filter($event)" [(ngModel)]="selectedView" [formControl]="columns" multiple>
+                  <mat-option *ngFor="let column of helper.getOptionalColumns()" [value]="column.value">
+                    {{column.title}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -64,19 +64,19 @@
 
       <!-- title of todo -->
       <ng-container matColumnDef="title" >
-        <mat-header-cell *matHeaderCellDef>A faire</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>{{ helper.getColumn('title').title }}</mat-header-cell>
         <mat-cell *matCellDef="let todo" class="titleCol">{{todo.title}}</mat-cell>
       </ng-container>
 
       <!-- start date -->
       <ng-container matColumnDef="start">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ getLabel(0) }} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ helper.getColumn('start').title }} </mat-header-cell>
         <mat-cell *matCellDef="let todo"> {{ todo.start | date:'dd-MM-yyyy'}} </mat-cell>
       </ng-container>
 
       <!-- start date -->
       <ng-container matColumnDef="end">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ getLabel(1) }} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{ helper.getColumn('end').title }} </mat-header-cell>
         <mat-cell *matCellDef="let todo"> {{ todo.end | date:'dd-MM-yyyy'}} </mat-cell>
       </ng-container>
 
@@ -84,7 +84,7 @@
 
       <!-- edit btn-->
       <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>{{ helper.getColumn('edit').title }}</mat-header-cell>
         <mat-cell *matCellDef="let todo"> 
           <button mat-mini-fab color="accent" (click)="edit(todo)" >
             <mat-icon aria-label="Editer le todo">create</mat-icon>
@@ -93,7 +93,7 @@
       </ng-container>
       <!-- del btn-->
       <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>{{ helper.getColumn('delete').title }}</mat-header-cell>
         <mat-cell *matCellDef="let todo"> 
           <button mat-mini-fab color="warn" (click)="delete(todo)" >
             <mat-icon aria-label="Supprimer le todo">delete</mat-icon>
@@ -101,8 +101,8 @@
         </mat-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-header-row *matHeaderRowDef="helper.getDisplayedColumns()"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: helper.getDisplayedColumns();"></mat-row>
     </mat-table>
   </div>
 

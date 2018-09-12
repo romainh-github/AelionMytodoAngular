@@ -26,7 +26,12 @@ table{
 }
 
 .btnDelAll{
+    margin-left: 30px;
     margin-bottom: 5px;
+
+}
+.toolTitle{
+    margin-bottom: 17px;
 }
 .btnTodoDel{
     left: 25%;
@@ -44,7 +49,7 @@ table{
     
 }
 .move-right {
-    margin-left: 50%;
+   margin-right: 60%;
 }
 .mat-header-cell, .mat-cell {
     font-size: 1em;
@@ -62,6 +67,18 @@ table{
 .mat-column-del, .mat-column-edit{
     flex: 1 0 10%;
 }
+.toolDel{
+    position: relative;
+    top:5px;
 
+}
+.mat-form-field{
+    top:0px;
+    margin-left: 30px;
+}
+
+.mat-header-cell[_ngcontent-c3], .mat-cell[_ngcontent-c3] {
+    margin-left:5px;
+}
 
 
