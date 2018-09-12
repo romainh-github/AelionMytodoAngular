@@ -46,8 +46,22 @@ table{
 .move-right {
     margin-left: 50%;
 }
-.mat-row {
+.mat-header-cell, .mat-cell {
     font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: visible;
+    margin:auto;
+  
 }
+.mat-column-title{
+    flex: 1 0 50%;
+}
+.mat-column-start, .mat-column-end{
+    flex: 1 0 15%;
+}
+.mat-column-del, .mat-column-edit{
+    flex: 1 0 10%;
+}
+
 
 

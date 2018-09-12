@@ -36,7 +36,13 @@ export class TodoTableComponent implements OnInit {
  * Reference the name of the column in the html mat-table
  */
   public displayedColumns = ['title', 'start', 'end', 'edit', 'delete'];
-  public displayedFilter = ['start', 'end'];
+  /**
+   * List of the available objects in the mat-select
+   */
+  public displayedFilter: any[] = [{value: 'start', label: 'Début'}, {value: 'end', label: 'Fin'}];
+  /**
+   * assign displayedFilter to selectedItems which is used in the NgModel in the html
+   */
   public selectedItems = this.displayedFilter;
 
   public constructor(private todoService: TodoService) {
@@ -75,19 +81,64 @@ export class TodoTableComponent implements OnInit {
 
   }
 
+  /**
+   * Method to filter table by end date and start date of todo
+   * @param event Selected option in the mat-select to filter the todo table
+   */
   public filter(event) {
     console.log(JSON.stringify(event.value));
-    let filt = JSON.stringify(event.value);
-    filt = filt.replace('["', '');
-    filt = filt.replace('"]', '');
+    const filt = JSON.stringify(event.value);
     console.log(filt);
     if (filt === '[]') {
       this.displayedColumns = ['title', 'edit', 'delete'];
-    } else if (filt.includes(',') === true) {
+    } else if (filt.includes('end') === true && filt.includes('start') === true) {
       this.displayedColumns = ['title', 'start', 'end' , 'edit', 'delete'];
-    } else {
-      this.displayedColumns = ['title', filt , 'edit', 'delete'];
+    } else if (filt.includes('end') === true && filt.includes('start') === false)  {
+      this.displayedColumns = ['title', 'end' , 'edit', 'delete'];
+    } else if (filt.includes('end') === false && filt.includes('start') === true)  {
+      this.displayedColumns = ['title', 'start' , 'edit', 'delete'];
     }
+  }
+
+  /*Methode par Jean Luc : 
+   * Détecte un changement de sélection de colonnes
+   * @param event Evénément propagé
+   
+  public changeView(event: any): void {
+    console.log(this.selectedOptions + ' de taille : ' + this.selectedOptions.length);
+
+    /
+     * Définit le tableau final pour l'affichage des colonnes
+    
+    const toDisplay: String[] = [];
+
+    toDisplay.push('title'); // Toujours affichée, donc... on le push
+
+    if (this.selectedOptions.indexOf('begin') !== -1 ) {
+      // begin est coché, on le push
+      toDisplay.push('begin');
+    }
+
+    if (this.selectedOptions.indexOf('end') !== -1 ) {
+      // end est coché, on le push
+      toDisplay.push('end');
+    }
+    // On doit toujours avoir les boutons aussi
+    toDisplay.push('update');
+    toDisplay.push('delete');
+
+    /**
+     * On remplace le tableau des colonnes à afficher dans le tableau
+    
+    this.displayedColumns = toDisplay;
+}*/
+
+  /**
+   * method to return the label of the filter mat-select in the th of the table
+   * @param index index of the th label in the table
+   */
+  public getLabel(index: number): String {
+    return this.displayedFilter[index].label;
   }
 
 
