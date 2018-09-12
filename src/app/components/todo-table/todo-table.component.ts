@@ -36,9 +36,12 @@ export class TodoTableComponent implements OnInit {
  * Reference the name of the column in the html mat-table
  */
   public displayedColumns = ['title', 'start', 'end', 'edit', 'delete'];
+  public displayedFilter = ['start', 'end'];
+  public selectedItems = this.displayedFilter;
 
   public constructor(private todoService: TodoService) {
     this.todos = [];
+
 
     this.todoSubscription = this.todoService.getTodo().subscribe((todo) => {
       console.log('Reception of observable of todo in todo-table: ' + JSON.stringify(todo));
@@ -72,6 +75,22 @@ export class TodoTableComponent implements OnInit {
 
   }
 
+  public filter(event) {
+    console.log(JSON.stringify(event.value));
+    let filt = JSON.stringify(event.value);
+    filt = filt.replace('["', '');
+    filt = filt.replace('"]', '');
+    console.log(filt);
+    if (filt === '[]') {
+      this.displayedColumns = ['title', 'edit', 'delete'];
+    } else if (filt.includes(',') === true) {
+      this.displayedColumns = ['title', 'start', 'end' , 'edit', 'delete'];
+    } else {
+      this.displayedColumns = ['title', filt , 'edit', 'delete'];
+    }
+  }
+
+
   public delete(todo: TodoInterface): void {
     const index = this.todos.indexOf(todo);
     const _todo = this.todos[index];
@@ -85,6 +104,8 @@ export class TodoTableComponent implements OnInit {
     }
 
   }
+
+
 
   public isChecked(todo: TodoInterface): boolean {
     return todo.isChecked;
