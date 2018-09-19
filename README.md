@@ -48,6 +48,13 @@ Start angular application
 
 $: ng serve
 
+Install external project for backend :
+https://github.com/romainh-github/AelionNodeTodo
+
+Start server NodeTodo:
+$: npm start
+
+
 Then go to this url on your favorite browser:
 http://localhost:4200
 
@@ -73,7 +80,6 @@ CREATE TABLE `todos` (
 
 
 
-NOTE: 
-- This project works only if you have the nodetodo project which is the backend server.
+
 
 
