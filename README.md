@@ -52,7 +52,28 @@ Then go to this url on your favorite browser:
 http://localhost:4200
 
 
+Script SQL to create database :
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`todos_repo` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `todos_repo`;
+
+/*Table structure for table `todos` */
+
+DROP TABLE IF EXISTS `todos`;
+
+CREATE TABLE `todos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=261 DEFAULT CHARSET=utf8;
+
+
+
+
 NOTE: 
 - This project works only if you have the nodetodo project which is the backend server.
-- This project requires a local mysql database.
+
 
