@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Hello
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
@@ -26,7 +25,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
 # AelionMytodoAngular
 MyTodo, done with angular during formation aelion, is a todo list web application.
 This is a student project showcasing developing a web application in javascript with angularJs framework.
@@ -58,4 +56,3 @@ NOTE:
 - This project works only if you have the nodetodo project which is the backend server.
 - This project requires a local mysql database.
 
->>>>>>> a00c3a9f9da54ed4c945380a7cd68da074b4f354
